@@ -57,8 +57,14 @@ const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    // backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  return (
+    <SafeAreaView style={styles.sectionContainer}>
+      <VideoPlayer />
+    </SafeAreaView>
+  );
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -94,8 +100,10 @@ const App = () => {
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    width: '100%',
+    height: '100%',
+    // marginTop: 32,
+    // paddingHorizontal: 24,
   },
   sectionTitle: {
     fontSize: 24,
