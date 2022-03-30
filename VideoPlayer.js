@@ -116,6 +116,8 @@ export default class VideoPlayer extends Component {
     const flexCompleted = this.getCurrentTimePercentage() * 100;
     const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
 
+    const {LocalFilePath} = this.props;
+
     return (
       <View style={styles.container}>
         <TouchableOpacity
@@ -125,8 +127,12 @@ export default class VideoPlayer extends Component {
             ref={ref => {
               this.video = ref;
             }}
+            // source={{
+            //   uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+            // type: 'mp4',
+            // }}
             source={{
-              uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+              uri: LocalFilePath,
               // type: 'mp4',
             }}
             // source={require('./broadchurch.mp4')}

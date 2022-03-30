@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -7,34 +7,39 @@ import {
   View,
 } from 'react-native';
 import {RNCamera} from 'react-native-camera';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-import {useEffect} from 'react/cjs/react.production.min';
+import VideoPlayer from './VideoPlayer';
 
 export default function MyCamera() {
   const RNCamRef = useRef(null);
+  const [LocalFilePath, setLocalFilePath] = useState('');
 
-  takePicture = async () => {
-    console.log('RNCamRef', RNCamRef);
-    if (RNCamRef) {
-      const options = {quality: 0.5, base64: true};
-      // const data = await RNCamRef.takePictureAsync(options);
-      // console.log(data.uri);
+  // takePicture = async () => {
+  //   console.log('RNCamRef', RNCamRef);
+  //   if (RNCamRef) {
+  //     const options = {quality: 0.5, base64: true};
+  //     // const data = await RNCamRef.takePictureAsync(options);
+  //     // console.log(data.uri);
 
-      RNCamRef.current
-        .takePictureAsync(options)
-        .then(res => console.log('res', res));
-    }
-  };
+  //     RNCamRef.current
+  //       .takePictureAsync(options)
+  //       .then(res => console.log('res', res));
+  //   }
+  // };
 
   const StartVideo = async () => {
     if (RNCamRef) {
       const {uri, codec = 'mp4'} = await RNCamRef.current.recordAsync();
       console.info(uri);
+      setLocalFilePath(uri);
     }
   };
   const StopVideo = () => {
     RNCamRef.current.stopRecording();
   };
+
+  if (LocalFilePath.length > 0) {
+    return <VideoPlayer LocalFilePath={LocalFilePath} />;
+  }
 
   return (
     <View style={styles.container}>
@@ -60,9 +65,9 @@ export default function MyCamera() {
         // }}
       />
       <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center'}}>
-        <TouchableOpacity onPress={takePicture} style={styles.capture}>
+        {/* <TouchableOpacity onPress={takePicture} style={styles.capture}>
           <Text style={{fontSize: 14, color: 'red'}}> SNAP </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity onPress={StartVideo} style={styles.capture}>
           <Text style={{color: 'blue'}}>Start Rec</Text>

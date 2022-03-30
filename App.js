@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <VideoPlayer />
+      <MyCamera />
     </SafeAreaView>
   );
 
@@ -69,8 +69,6 @@ const App = () => {
       <MyCamera />
     </SafeAreaView>
   );
-
-
 };
 
 const styles = StyleSheet.create({
