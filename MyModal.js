@@ -14,18 +14,25 @@ const DATA = [
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     title: '1',
   },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'w',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'd',
-  },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: 'w',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: 'd',
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: 'w',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: 'd',
+  //   },
 ];
 
 const RenderItem = params => {
-  console.log('params', params);
   const {title} = params.item;
   return (
     <View style={styles.item}>
@@ -58,7 +65,12 @@ class MyModal extends Component {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>Hello World!</Text>
-              <View style={{flex: 0, flexDirection: 'row'}}>
+              <View
+                style={{
+                  flex: 0,
+                  flexDirection: 'row',
+                  maxHeight: 300,
+                }}>
                 <FlatList
                   data={DATA}
                   renderItem={RenderItem}
